@@ -61,6 +61,9 @@
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAddPerson.resx">
+      <DependentUpon>frmAddPerson.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDataGridView.resx">
       <DependentUpon>frmDataGridView.cs</DependentUpon>
     </EmbeddedResource>
