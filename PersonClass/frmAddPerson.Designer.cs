@@ -31,12 +31,12 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.txtNationalId = new System.Windows.Forms.TextBox();
-            this.txtGender = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.txtGender = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // txtName
@@ -71,17 +71,6 @@
             this.txtNationalId.Name = "txtNationalId";
             this.txtNationalId.Size = new System.Drawing.Size(215, 32);
             this.txtNationalId.TabIndex = 2;
-            // 
-            // txtGender
-            // 
-            this.txtGender.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGender.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtGender.Location = new System.Drawing.Point(90, 337);
-            this.txtGender.Name = "txtGender";
-            this.txtGender.Size = new System.Drawing.Size(215, 32);
-            this.txtGender.TabIndex = 3;
             // 
             // label1
             // 
@@ -143,22 +132,33 @@
             this.btnSave.Location = new System.Drawing.Point(112, 404);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(126, 45);
-            this.btnSave.TabIndex = 8;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // txtGender
+            // 
+            this.txtGender.FormattingEnabled = true;
+            this.txtGender.Items.AddRange(new object[] {
+            "man",
+            "woman"});
+            this.txtGender.Location = new System.Drawing.Point(90, 335);
+            this.txtGender.Name = "txtGender";
+            this.txtGender.Size = new System.Drawing.Size(215, 34);
+            this.txtGender.TabIndex = 3;
             // 
             // frmAddPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 26F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(338, 491);
+            this.Controls.Add(this.txtGender);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtGender);
             this.Controls.Add(this.txtNationalId);
             this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.txtName);
@@ -176,11 +176,11 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.TextBox txtNationalId;
-        private System.Windows.Forms.TextBox txtGender;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ComboBox txtGender;
     }
 }

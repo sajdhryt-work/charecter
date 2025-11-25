@@ -13,6 +13,7 @@ namespace PersonClass
     public partial class frmAddPerson : Form
     {
         private Person editingPerson = null;
+
         public frmAddPerson()
         {
             InitializeComponent();
@@ -42,18 +43,48 @@ namespace PersonClass
                     NationalId = txtNationalId.Text,
                     Gender = txtGender.Text
                 };
+                var isValide = person.Validate();
+                if (isValide.IsSuccess)
+                {
+                    frmDvg.people.Add(person);
+                }
+                else
+                {
+                    MessageBox.Show(isValide.Message);
+                }
                 
-                frmDvg.people.Add(person);
+               
             }
             else
             {
+
                 frmDvg.Text = "Edit Person";
 
-                editingPerson.FirstName = txtName.Text;
-                editingPerson.LastName = txtLastName.Text;
-                editingPerson.NationalId = txtNationalId.Text;
-                editingPerson.Gender = txtGender.Text;
-                this.Close();
+                var tempPerson = new Person
+                {
+                    FirstName = txtName.Text,
+                    LastName = txtLastName.Text,
+                    NationalId = txtNationalId.Text,
+                    Gender = txtGender.Text
+                };
+
+             
+                var isValide = tempPerson.Validate();
+
+               
+                if (isValide.IsSuccess)
+                {
+
+                    editingPerson.FirstName = tempPerson.FirstName;
+                    editingPerson.LastName = tempPerson.LastName;
+                    editingPerson.NationalId = tempPerson.NationalId;
+                    editingPerson.Gender = tempPerson.Gender;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show(isValide.Message);
+                }
             }
         }
     }

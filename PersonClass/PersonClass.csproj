@@ -61,6 +61,7 @@
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="OperationResult.cs" />
     <EmbeddedResource Include="frmAddPerson.resx">
       <DependentUpon>frmAddPerson.cs</DependentUpon>
     </EmbeddedResource>
