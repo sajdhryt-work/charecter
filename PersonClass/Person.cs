@@ -8,10 +8,16 @@ namespace PersonClass
 {
     public class Person
     {
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string NationalId { get; set; }
         public string Gender { get; set; }
+        public string FullName
+        {
+            get
+            { return $"{FirstName} {LastName}"; }
+        }
 
         private bool ValidateNationalId(string code_melli)
         {
@@ -55,18 +61,18 @@ namespace PersonClass
         }
         public OperationResult Validate()
         {
-            if (!ValidateNationalId(NationalId))
-            {
-                return OperationResult.Failed("National Code format is incorrect");
-            }
-
             if (string.IsNullOrWhiteSpace(FirstName) ||
                 string.IsNullOrWhiteSpace(LastName) ||
                 string.IsNullOrWhiteSpace(Gender))
             {
-                return OperationResult.Failed("One field is empty"); 
+                return OperationResult.Failed("One field is empty");
             }
 
+            if (!ValidateNationalId(NationalId))
+            {
+                return OperationResult.Failed("National Code format is incorrect");
+            }
+ 
             string genderLower = Gender.ToLower().Trim();
             if (genderLower != "man" && genderLower != "woman")
             {

@@ -37,6 +37,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtGender = new System.Windows.Forms.ComboBox();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtName
@@ -129,7 +130,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(112, 404);
+            this.btnSave.Location = new System.Drawing.Point(42, 407);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(126, 45);
             this.btnSave.TabIndex = 4;
@@ -139,6 +140,9 @@
             // 
             // txtGender
             // 
+            this.txtGender.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGender.FormattingEnabled = true;
             this.txtGender.Items.AddRange(new object[] {
             "man",
@@ -148,11 +152,27 @@
             this.txtGender.Size = new System.Drawing.Size(215, 34);
             this.txtGender.TabIndex = 3;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(174, 407);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(126, 45);
+            this.btnCancel.TabIndex = 8;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
             // frmAddPerson
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 26F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(338, 491);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.txtGender);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label4);
@@ -166,6 +186,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmAddPerson";
             this.Text = "AddPerson";
+            this.Load += new System.EventHandler(this.frmAddPerson_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,5 +203,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ComboBox txtGender;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

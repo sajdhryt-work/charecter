@@ -12,54 +12,82 @@ namespace PersonClass
 {
     public partial class frmDataGridView : Form
     {
-        public List<Person> people = new List<Person>();
+        PersonManager personManager = new PersonManager();
         public frmDataGridView()
         {
             InitializeComponent();
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            frmAddPerson frmAdd = new frmAddPerson();
-            frmAdd.ShowDialog();
-            FillDgvPerson();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             FillDgvPerson();
         }
-
         private void FillDgvPerson()
         {
-            dgvPerson.DataSource = people.ToList();
+            dgvPerson.DataSource = personManager.GetPeople().ToList();
         }
-
-        private void btnRemove_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (dgvPerson.SelectedRows.Count > 0)
+            frmAddPerson frmAdd = new frmAddPerson()
             {
-                int key = dgvPerson.SelectedRows[0].Index;
+                Text = "Add Person",
+            };
 
-                people.RemoveAt(key);
+            if (frmAdd.ShowDialog() == DialogResult.OK)
+            {
                 FillDgvPerson();
             }
-        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+        }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (dgvPerson.SelectedRows.Count > 0)
-            {
-                int rowIndex = dgvPerson.CurrentCell.RowIndex;
-                var frmEdit = new frmAddPerson(people[rowIndex]);
-                if (frmEdit.ShowDialog() == DialogResult.OK)
-                {
-                    FillDgvPerson(); 
-                }
+            //if (dgvPerson.SelectedRows.Count > 0)
+            //{
+            //    int rowIndex = dgvPerson.CurrentCell.RowIndex;
+            //    var frmEdit = new frmAddPerson(people[rowIndex]);
+            //    if (frmEdit.ShowDialog() == DialogResult.OK)
+            //    {
+            //        FillDgvPerson(); 
+            //    }
 
+            //}
+            //else
+            //    MessageBox.Show("choss one Row");
+        }
+
+        private void dgvPerson_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
             }
-            else
-                MessageBox.Show("choss one Row");
+            if (e.ColumnIndex == dgvPerson.Columns[ColDelete.Name].Index)
+            {
+                var result = AlertHelper.Question("Are you sure to delete this person?");
+                if (result == DialogResult.No)
+                    return;
+                var person = dgvPerson.Rows[e.RowIndex].DataBoundItem as Person;
+                if (person != null)
+                {
+                    personManager.RemovePerson(person);
+                    FillDgvPerson();
+                }
+            }
+
+            else if(e.ColumnIndex == dgvPerson.Columns[ColEdit.Name].Index)
+            {              
+                var person = dgvPerson.Rows[e.RowIndex].DataBoundItem as Person;
+                frmAddPerson frmAdd = new frmAddPerson()
+                {
+                    Text = $"Edit {person.FullName}",
+                    personEditing = person
+                };
+
+                if (frmAdd.ShowDialog() == DialogResult.OK)
+                {
+                    FillDgvPerson();
+                }
+            }
         }
     }
 }
