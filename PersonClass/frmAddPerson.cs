@@ -14,6 +14,9 @@ namespace PersonClass
     {
         public Person personEditing { get; set; }
         PersonManager PersonManager;
+        bool isEdit = false;
+        bool isReadyToExit = true;
+
         public frmAddPerson()
         {
             InitializeComponent();
@@ -22,55 +25,61 @@ namespace PersonClass
 
         private void frmAddPerson_Load(object sender, EventArgs e)
         {
-           
+            if (personEditing != null)
+            {
                 txtName.Text = personEditing.FirstName;
                 txtLastName.Text = personEditing.LastName;
                 txtNationalId.Text = personEditing.NationalId;
-                txtGender.Text = personEditing.Gender;
+                if (personEditing.Gender == Genders.man)
+                    txtGender.Text = "man";
+                else if (personEditing.Gender == Genders.woman)
+                    txtGender.Text = "woman";
+            }
            
         }
-        //public frmAddPerson(Person person)
-        //{
-        //    InitializeComponent();
-        //    personEditing = person;
-
-        //    txtName.Text = person.FirstName;
-        //    txtLastName.Text = person.LastName;
-        //    txtNationalId.Text = person.NationalId;
-        //    txtGender.Text = person.Gender;
-        //}
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            bool isEdit = false;
-            if (personEditing == null)
+            if (personEditing == null || isReadyToExit==false)
             {
                 personEditing = new Person();
             }
             else
             {
-                isEdit = true;
+                isEdit = true;                
             }
             personEditing.FirstName = txtName.Text;
             personEditing.LastName = txtLastName.Text;
             personEditing.NationalId = txtNationalId.Text;
-            personEditing.Gender = txtGender.Text;
+            if (txtGender.Text.ToLower() == "man")
+                personEditing.Gender = Genders.man;
+            else if (txtGender.Text.ToLower() == "woman")
+                personEditing.Gender = Genders.woman;
+            else
+                personEditing.Gender = Genders.unknow;
 
             if (!isEdit)
             {
-                //var isValide = person.Validate();
-                //if (isValide.IsSuccess)
-                //{
-                PersonManager.AddPerson(personEditing);
-                //}
-                //else
-                //{
-                //    MessageBox.Show(isValide.Message);
-                //}
-            }
-              
-              DialogResult = DialogResult.OK;
                
+                var isValide = PersonManager.AddPerson(personEditing);
+                if (!isValide.IsSuccess)
+                {
+
+                    if (MessageBox.Show(isValide.Message, "warning", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
+                    {
+                        isReadyToExit = false;
+                    }
+                   
+                }
+                 else
+                        isReadyToExit = true;
+
+            }
+            if (isReadyToExit)
+            {
+                DialogResult = DialogResult.OK;
+            }
+   
            
         }
 

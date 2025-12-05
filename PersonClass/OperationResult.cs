@@ -12,13 +12,13 @@ namespace PersonClass
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
 
-        private OperationResult(bool isSuccess, string message)
+        public OperationResult(bool isSuccess, string message)
         {
             IsSuccess = isSuccess;
             Message = message;
         }
 
-        private OperationResult(bool isSuccess)
+        public OperationResult(bool isSuccess)
         {
             IsSuccess = isSuccess;
         }

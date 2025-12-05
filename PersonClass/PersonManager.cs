@@ -25,9 +25,29 @@ namespace PersonClass
         {
            people.Remove(person);
         }
-        internal void AddPerson(Person person)
+        internal OperationResult AddPerson(Person person)
         {
+
+            if (string.IsNullOrWhiteSpace(person.FirstName)
+                || string.IsNullOrWhiteSpace(person.LastName)) 
+            {
+                return OperationResult.Failed("One field is empty");
+            }
+
+            if (!person.NationalId.ValidateNationalId())
+            {
+                return OperationResult.Failed("National Code format is incorrect");
+            }
+
+            if (person.Gender == Genders.unknow)
+            {
+                return OperationResult.Failed("Please select a correct Gender");
+            }
             people.Add(person);
+            return OperationResult.Success();
+            
         }
+        
+
     }
 }

@@ -12,10 +12,11 @@ namespace PersonClass
 {
     public partial class frmDataGridView : Form
     {
-        PersonManager personManager = new PersonManager();
+        PersonManager personManager;
         public frmDataGridView()
         {
             InitializeComponent();
+            personManager = new PersonManager();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -37,22 +38,6 @@ namespace PersonClass
             {
                 FillDgvPerson();
             }
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            //if (dgvPerson.SelectedRows.Count > 0)
-            //{
-            //    int rowIndex = dgvPerson.CurrentCell.RowIndex;
-            //    var frmEdit = new frmAddPerson(people[rowIndex]);
-            //    if (frmEdit.ShowDialog() == DialogResult.OK)
-            //    {
-            //        FillDgvPerson(); 
-            //    }
-
-            //}
-            //else
-            //    MessageBox.Show("choss one Row");
         }
 
         private void dgvPerson_CellContentClick(object sender, DataGridViewCellEventArgs e)

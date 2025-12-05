@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlertHelper.cs" />
+    <Compile Include="ExtensionMethod.cs" />
     <Compile Include="frmAddPerson.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +60,7 @@
     <Compile Include="frmDataGridView.Designer.cs">
       <DependentUpon>frmDataGridView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Genders.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="PersonManager.cs" />
     <Compile Include="Program.cs" />
