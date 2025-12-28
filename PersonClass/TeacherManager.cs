@@ -6,30 +6,41 @@ using System.Threading.Tasks;
 
 namespace PersonClass
 {
-    internal class PersonManager
+    internal class TeacherManager
     {
-        private static List<Person> people;
-        public PersonManager() 
+        private static List<Teacher> teachers;
+        public TeacherManager()
         {
-            if (people == null)
-                people = new List<Person>();
+            if (teachers == null)
+            {
+                teachers = new List<Teacher>();
+            }
+        }
+        internal IReadOnlyList<Teacher> GetTeacher()
+        {
+            //return new List<Student>(people); // ye copy az list bar migardone
+            return teachers;
         }
 
-        internal IReadOnlyList<Person> GetPeople()
+        internal void Remove(Teacher teacher)
         {
-            //return new List<Person>(people); // ye copy az list bar migardone
-            return people;
+            teachers.Remove(teacher);
+        }
+        internal void Add(Teacher teacher)
+        {
+            teachers.Add(teacher);
         }
 
-        internal void RemovePerson(Person person)
+        internal void Edit(Teacher teacher)
         {
-           people.Remove(person);
+
         }
-        internal OperationResult AddPerson(Person person)
+
+        public OperationResult Validate(Teacher person)
         {
 
             if (string.IsNullOrWhiteSpace(person.FirstName)
-                || string.IsNullOrWhiteSpace(person.LastName)) 
+                || string.IsNullOrWhiteSpace(person.LastName))
             {
                 return OperationResult.Failed("One field is empty");
             }
@@ -43,11 +54,8 @@ namespace PersonClass
             {
                 return OperationResult.Failed("Please select a correct Gender");
             }
-            people.Add(person);
             return OperationResult.Success();
-            
         }
-        
 
     }
 }

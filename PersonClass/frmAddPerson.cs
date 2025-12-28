@@ -12,77 +12,130 @@ namespace PersonClass
 {
     public partial class frmAddPerson : Form
     {
-        public Person personEditing { get; set; }
-        PersonManager PersonManager;
-        bool isEdit = false;
-        bool isReadyToExit = true;
+        public Student StudentEditing { get; set; }
+        StudentManager studentManager;
 
-        public frmAddPerson()
+        Action _action;
+
+        public frmAddPerson(Action action)
         {
             InitializeComponent();
-            PersonManager = new PersonManager();
+            studentManager = new StudentManager();
+            _action = action;
+        }
+
+        private void TextBox_Enter(object sender, EventArgs e)
+        {
+            TextBox Tb = sender as TextBox;
+            if (Tb != null)
+            {
+                Tb.BackColor = Color.LightCyan;
+            }
+        }
+
+        private void TextBox_Leave(object sender, EventArgs e)
+        {
+            TextBox Tb = sender as TextBox;
+            if (Tb != null)
+            {
+                Tb.BackColor = Color.White;
+            }
         }
 
         private void frmAddPerson_Load(object sender, EventArgs e)
         {
-            if (personEditing != null)
+            if (StudentEditing != null)
             {
-                txtName.Text = personEditing.FirstName;
-                txtLastName.Text = personEditing.LastName;
-                txtNationalId.Text = personEditing.NationalId;
-                if (personEditing.Gender == Genders.man)
+                txtName.Text = StudentEditing.FirstName;
+                txtLastName.Text = StudentEditing.LastName;
+                txtNationalId.Text = StudentEditing.NationalId;
+                if (StudentEditing.Gender == Genders.man)
                     txtGender.Text = "man";
-                else if (personEditing.Gender == Genders.woman)
+                else if (StudentEditing.Gender == Genders.woman)
                     txtGender.Text = "woman";
+
+                if (StudentEditing.Grade == Grades.dahom)
+                    txtGrade.Text = "dahom";
+                else if (StudentEditing.Grade == Grades.yazdahom)
+                    txtGrade.Text = "yazdahom";
+                else if (StudentEditing.Grade == Grades.davazdahom)
+                    txtGrade.Text = "davazdahom";
+
+                txtStudentCode.Text = StudentEditing.StudentCode.ToString();
             }
-           
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (personEditing == null || isReadyToExit==false)
+            Student student;
+
+            if(StudentEditing != null)
             {
-                personEditing = new Person();
+                student = StudentEditing;
             }
             else
             {
-                isEdit = true;                
+                student = new Student();
             }
-            personEditing.FirstName = txtName.Text;
-            personEditing.LastName = txtLastName.Text;
-            personEditing.NationalId = txtNationalId.Text;
-            if (txtGender.Text.ToLower() == "man")
-                personEditing.Gender = Genders.man;
-            else if (txtGender.Text.ToLower() == "woman")
-                personEditing.Gender = Genders.woman;
+
+            student.FirstName = txtName.Text;
+            student.LastName = txtLastName.Text;
+            student.NationalId = txtNationalId.Text;
+
+            if (txtGender.Text == "man")
+                student.Gender = Genders.man;
+            else if (txtGender.Text == "woman")
+                student.Gender = Genders.woman;
             else
-                personEditing.Gender = Genders.unknow;
+                student.Gender = Genders.unknow;
 
-            if (!isEdit)
+            if (txtGrade.Text == "dahom")
+                student.Grade = Grades.dahom;
+            else if (txtGrade.Text == "yazdahom")
+                student.Grade = Grades.yazdahom;
+            else if (txtGrade.Text == "davazdahom")
+                student.Grade = Grades.davazdahom;
+            else
+                student.Grade = Grades.unknow;
+            try
             {
-               
-                var isValide = PersonManager.AddPerson(personEditing);
-                if (!isValide.IsSuccess)
-                {
-
-                    if (MessageBox.Show(isValide.Message, "warning", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
-                    {
-                        isReadyToExit = false;
-                    }
-                   
-                }
-                 else
-                        isReadyToExit = true;
-
-            }
-            if (isReadyToExit)
+                student.StudentCode = int.Parse(txtStudentCode.Text);
+            }catch(Exception)
             {
-                DialogResult = DialogResult.OK;
+                MessageBox.Show("please inter the number in fild student code");
             }
-   
-           
+
+            if (StudentEditing == null)
+            {
+               var isValide = studentManager.Validate(student);
+                if (isValide.IsSuccess)
+                    studentManager.Add(student);
+                else
+                    MessageBox.Show(isValide.Message, "warning", MessageBoxButtons.RetryCancel);             
+            }
+            _action?.Invoke();
+
+
         }
 
-       
+        private void btnSaveExit_Click(object sender, EventArgs e)
+        {
+            btnSave_Click(sender, e);
+
+            this.Close();
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            //print data student
+        }
     }
+
 }
+
+
+
+
+
+

@@ -54,16 +54,16 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dgvPerson);
-            this.splitContainer1.Size = new System.Drawing.Size(907, 638);
-            this.splitContainer1.SplitterDistance = 115;
+            this.splitContainer1.Size = new System.Drawing.Size(769, 546);
+            this.splitContainer1.SplitterDistance = 98;
             this.splitContainer1.TabIndex = 1;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(13, 13);
+            this.btnAdd.Location = new System.Drawing.Point(230, 50);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(153, 44);
+            this.btnAdd.Size = new System.Drawing.Size(63, 44);
             this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -82,7 +82,7 @@
             this.dgvPerson.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dgvPerson.RowHeadersWidth = 51;
             this.dgvPerson.RowTemplate.Height = 24;
-            this.dgvPerson.Size = new System.Drawing.Size(907, 519);
+            this.dgvPerson.Size = new System.Drawing.Size(769, 444);
             this.dgvPerson.TabIndex = 1;
             this.dgvPerson.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPerson_CellContentClick);
             // 
@@ -104,12 +104,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(907, 638);
+            this.ClientSize = new System.Drawing.Size(769, 546);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDataGridView";
-            this.Text = "Form1";
+            this.Text = " ";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDataGridView_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

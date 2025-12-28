@@ -54,23 +54,45 @@
     <Compile Include="frmAddPerson.Designer.cs">
       <DependentUpon>frmAddPerson.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAddTeacher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddTeacher.Designer.cs">
+      <DependentUpon>frmAddTeacher.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDataGridView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmDataGridView.Designer.cs">
       <DependentUpon>frmDataGridView.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFirst.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFirst.Designer.cs">
+      <DependentUpon>frmFirst.cs</DependentUpon>
+    </Compile>
     <Compile Include="Genders.cs" />
+    <Compile Include="Grades.cs" />
     <Compile Include="Person.cs" />
-    <Compile Include="PersonManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OperationResult.cs" />
+    <Compile Include="Student.cs" />
+    <Compile Include="StudentManager.cs" />
+    <Compile Include="Teacher.cs" />
+    <Compile Include="TeacherManager.cs" />
     <EmbeddedResource Include="frmAddPerson.resx">
       <DependentUpon>frmAddPerson.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAddTeacher.resx">
+      <DependentUpon>frmAddTeacher.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDataGridView.resx">
       <DependentUpon>frmDataGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFirst.resx">
+      <DependentUpon>frmFirst.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
