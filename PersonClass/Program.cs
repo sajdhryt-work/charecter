@@ -16,7 +16,7 @@ namespace PersonClass
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmFirst());
+            Application.Run(new SelectType());
         }
     }
 }

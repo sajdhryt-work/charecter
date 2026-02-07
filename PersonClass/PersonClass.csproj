@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlertHelper.cs" />
+    <Compile Include="BaseRepo.cs" />
     <Compile Include="ExtensionMethod.cs" />
     <Compile Include="frmAddPerson.cs">
       <SubType>Form</SubType>
@@ -66,20 +67,28 @@
     <Compile Include="frmDataGridView.Designer.cs">
       <DependentUpon>frmDataGridView.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmFirst.cs">
+    <Compile Include="SelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFirst.Designer.cs">
-      <DependentUpon>frmFirst.cs</DependentUpon>
+    <Compile Include="SelectForm.Designer.cs">
+      <DependentUpon>SelectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Genders.cs" />
     <Compile Include="Grades.cs" />
+    <Compile Include="Messages.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OperationResult.cs" />
+    <Compile Include="SelectType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectType.Designer.cs">
+      <DependentUpon>SelectType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Student.cs" />
     <Compile Include="StudentManager.cs" />
+    <Compile Include="StudentRepo.cs" />
     <Compile Include="Teacher.cs" />
     <Compile Include="TeacherManager.cs" />
     <EmbeddedResource Include="frmAddPerson.resx">
@@ -91,8 +100,8 @@
     <EmbeddedResource Include="frmDataGridView.resx">
       <DependentUpon>frmDataGridView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmFirst.resx">
-      <DependentUpon>frmFirst.cs</DependentUpon>
+    <EmbeddedResource Include="SelectForm.resx">
+      <DependentUpon>SelectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -103,6 +112,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SelectType.resx">
+      <DependentUpon>SelectType.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

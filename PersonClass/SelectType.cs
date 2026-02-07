@@ -10,45 +10,39 @@ using System.Windows.Forms;
 
 namespace PersonClass
 {
-    public partial class frmFirst : Form
+    public partial class SelectType : Form
     {
-        
-
-        public frmFirst()
+        public SelectType()
         {
             InitializeComponent();
         }
 
-        private void btnShowStudent_Click(object sender, EventArgs e)
+        private void btnSql_Click(object sender, EventArgs e)
         {
-            frmDataGridView frm = new frmDataGridView()
-            {
-                Owner= this,
-                Text = "Students",
-                isStudent = true,
-            };
-            frm.Show();
-            this.Hide();
-
-        }
-
-        private void btnShowTeachers_Click(object sender, EventArgs e)
-        {
-            frmDataGridView frm = new frmDataGridView()
+            var frm = new SelectForm()
             {
                 Owner = this,
-                Text = "Techers",
-                isTeacher = true,
+                isSql = true,
             };
             frm.Show();
             this.Hide();
-
-
         }
 
-        private void frmFirst_FormClosing(object sender, FormClosingEventArgs e)
+        private void btnList_Click(object sender, EventArgs e)
+        {
+            var frm = new SelectForm()
+            {
+                Owner = this,
+                isSql = false,
+            };
+            frm.Show();
+            this.Hide();
+        }
+
+        private void SelectType_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
+
     }
 }

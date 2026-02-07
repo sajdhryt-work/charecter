@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,10 @@ namespace PersonClass
 {
     public partial class frmDataGridView : Form
     {
-        public bool isStudent = false;
-        public bool isTeacher = false;
+        public bool isStudentList = false;
+        public bool isStudentSql = false;
+        public bool isTeacherList = false;
+        public bool isTeacherSql = false;
         StudentManager studentManager;
         TeacherManager teacherManager;
         frmAddPerson frmAdd;
@@ -31,26 +34,38 @@ namespace PersonClass
         //}
         private void Form1_Load(object sender, EventArgs e)
         {         
-            FillDgvPerson();
+            FillDgvPerson();            
         }
         private void FillDgvPerson()
         {
-            if (isStudent)
+            if (isStudentList)
                 dgvPerson.DataSource = studentManager.GetStudent().ToList();
-            else if (isTeacher)
+            else if (isTeacherList)
                 dgvPerson.DataSource = teacherManager.GetTeacher().ToList();
+            else if(isStudentSql)
+            {
+                string search = txtSearch.Text;
+                var repo = new StudentRepo();
+                dgvPerson.DataSource = repo.Select(search);
+            }
+
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (isStudent)
+           
+            if (isStudentList || isStudentSql)
             {
                 frmAddPerson frmAdd = new frmAddPerson(FillDgvPerson)
                 {
                     Text = "Add Person",
                 };
+                if (isStudentSql)
+                {
+                    frmAdd.isSql = true;
+                }
                 frmAdd.Show();
             }
-            if (isTeacher)
+            if (isTeacherList || isTeacherSql)
             {
                 frmAddTeacher frmAdd = new frmAddTeacher(FillDgvPerson)
                 {
@@ -63,7 +78,25 @@ namespace PersonClass
 
         private void dgvPerson_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (isStudent)
+            if (isStudentSql)
+            {
+                if (e.RowIndex >= 0)
+                {
+                    if (e.ColumnIndex == dgvPerson.Columns[ColDelete.Name].Index)
+                    {
+                        var id = (int)dgvPerson.Rows[e.RowIndex].Cells["Id"].Value;
+                        var repo = new StudentRepo();
+                        repo.Delete(id);
+                        FillDgvPerson();
+                    }
+                    else if (e.ColumnIndex == dgvPerson.Columns[ColEdit.Name].Index)
+                    {
+                        var id = (int)dgvPerson.Rows[e.RowIndex].Cells["Id"].Value;
+                        new frmAddPerson(id).ShowDialog();
+                    }
+                }
+            }
+            if (isStudentList)
             {
                 if (e.RowIndex < 0)
                 {
@@ -93,7 +126,7 @@ namespace PersonClass
                     frmAdd.Show();
                 }
             }
-            else if(isTeacher) //this for Teacher
+            else if(isTeacherList) //this for Teacher
             {
                 if (e.RowIndex < 0)
                 {
@@ -133,6 +166,21 @@ namespace PersonClass
             {
                 this.Owner.Show();
             }
+        }   
+
+        private void dgvPerson_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            dgvPerson.Rows[e.RowIndex].Cells[ColRows.Name].Value = e.RowIndex + 1;
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            FillDgvPerson();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            FillDgvPerson();
         }
     }
 }

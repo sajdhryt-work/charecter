@@ -1,6 +1,6 @@
 ﻿namespace PersonClass
 {
-    partial class frmFirst
+    partial class SelectForm
     {
         /// <summary>
         /// Required designer variable.
@@ -54,18 +54,18 @@
             this.btnShowTeachers.UseVisualStyleBackColor = true;
             this.btnShowTeachers.Click += new System.EventHandler(this.btnShowTeachers_Click);
             // 
-            // frmFirst
+            // SelectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 512);
+            this.ClientSize = new System.Drawing.Size(446, 375);
             this.Controls.Add(this.btnShowTeachers);
             this.Controls.Add(this.btnShowStudents);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.Name = "frmFirst";
+            this.Name = "SelectForm";
             this.Text = "frmFirst";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmFirst_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SelectForm_FormClosing);
             this.ResumeLayout(false);
 
         }

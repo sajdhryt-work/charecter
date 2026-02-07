@@ -31,6 +31,24 @@ namespace PersonClass
             students.Add(student);
         }
 
+        public OperationResult<Student> GetByNationalcode(string nationalcode)
+        {
+            try
+            {
+                Student student = students.FirstOrDefault(t => t.NationalId == nationalcode);
+
+                if (student == null)
+                {
+                    return OperationResult<Student>.Failed("not find");
+                }
+                return OperationResult<Student>.Success(student);
+            }
+            catch (Exception)
+            {
+                return OperationResult<Student>.Failed("system Error");
+            }
+        }
+
         public OperationResult Validate(Student person)
         {
 

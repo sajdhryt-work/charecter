@@ -8,6 +8,7 @@ namespace PersonClass
 {
     public class Student : Person
     {
+        //Data Source =.; Initial Catalog = School; Integrated Security = True;
         public int StudentCode { get; set; }
         public Grades Grade { get; set; }
 
